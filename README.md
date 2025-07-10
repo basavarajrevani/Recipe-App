@@ -13,7 +13,8 @@ A modern, responsive web application to search and explore thousands of recipes 
 
 ## Demo
 
-![Recipe App Screenshot](screenshot.png) <!-- Add your screenshot here -->
+![Recipe App Screenshot](screenshot.png) <!-- Add your![Uploading WhatsApp Image 2025-07-10 at 20.06.44_15ed3eb1.jpg…]()
+ screenshot here -->
 
 ## Getting Started
 
