@@ -11,9 +11,6 @@ A modern, responsive web application to search and explore thousands of recipes 
 - 🖼️ **Graceful Error Handling:** Friendly messages and fallback images for missing data.
 - 📱 **Responsive Design:** Works great on desktop and mobile.
 
-## Demo
-
-![Recipe App Screenshot](screenshot.png) <!-- Add your screenshot here -->
 
 ## Getting Started
 
