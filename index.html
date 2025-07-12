@@ -11,18 +11,93 @@
     <header>
         <nav>
             <h1>RECIPE APP</h1>
-            <form>
-                <input 
-                    type="text"
-                    placeholder="Search for recipes..."
-                    class="searchBox"
-                    required
-                />
-                <button type="submit" class="searchButton">
-                    <i class="fas fa-search"></i>
-                    Search
-                </button>
-            </form>
+            <div class="nav-controls">
+                <div class="filter-controls">
+                    <select class="filter-select" id="categoryFilter">
+                        <option value="">All Categories</option>
+                        <option value="Beef">Beef</option>
+                        <option value="Chicken">Chicken</option>
+                        <option value="Dessert">Dessert</option>
+                        <option value="Lamb">Lamb</option>
+                        <option value="Miscellaneous">Miscellaneous</option>
+                        <option value="Pasta">Pasta</option>
+                        <option value="Pork">Pork</option>
+                        <option value="Seafood">Seafood</option>
+                        <option value="Side">Side</option>
+                        <option value="Starter">Starter</option>
+                        <option value="Vegan">Vegan</option>
+                        <option value="Vegetarian">Vegetarian</option>
+                    </select>
+                    <select class="filter-select" id="areaFilter">
+                        <option value="">All Cuisines</option>
+                        <option value="American">American</option>
+                        <option value="British">British</option>
+                        <option value="Canadian">Canadian</option>
+                        <option value="Chinese">Chinese</option>
+                        <option value="Croatian">Croatian</option>
+                        <option value="Dutch">Dutch</option>
+                        <option value="Egyptian">Egyptian</option>
+                        <option value="French">French</option>
+                        <option value="Greek">Greek</option>
+                        <option value="Indian">Indian</option>
+                        <option value="Irish">Irish</option>
+                        <option value="Italian">Italian</option>
+                        <option value="Jamaican">Jamaican</option>
+                        <option value="Japanese">Japanese</option>
+                        <option value="Kenyan">Kenyan</option>
+                        <option value="Malaysian">Malaysian</option>
+                        <option value="Mexican">Mexican</option>
+                        <option value="Moroccan">Moroccan</option>
+                        <option value="Polish">Polish</option>
+                        <option value="Portuguese">Portuguese</option>
+                        <option value="Russian">Russian</option>
+                        <option value="Spanish">Spanish</option>
+                        <option value="Thai">Thai</option>
+                        <option value="Tunisian">Tunisian</option>
+                        <option value="Turkish">Turkish</option>
+                        <option value="Vietnamese">Vietnamese</option>
+                    </select>
+                </div>
+                <form class="search-form">
+                    <input
+                        type="text"
+                        placeholder="Search for recipes..."
+                        class="searchBox"
+                        required
+                    />
+                    <button type="submit" class="searchButton">
+                        <i class="fas fa-search"></i>
+                        Search
+                    </button>
+                </form>
+                <div class="nav-buttons">
+                    <button class="collections-btn" id="collectionsBtn">
+                        <i class="fas fa-folder"></i>
+                        <span class="collections-count">0</span>
+                    </button>
+                    <button class="shopping-btn" id="shoppingBtn">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span class="shopping-count">0</span>
+                    </button>
+                    <button class="timer-btn" id="timerBtn">
+                        <i class="fas fa-clock"></i>
+                        <span class="timer-count">0</span>
+                    </button>
+                    <button class="favorites-btn" id="favoritesBtn">
+                        <i class="fas fa-heart"></i>
+                        <span class="favorites-count">0</span>
+                    </button>
+                    <button class="accessibility-btn" id="accessibilityBtn" title="Accessibility Options">
+                        <i class="fas fa-universal-access"></i>
+                    </button>
+                    <button class="random-recipe-btn" id="randomRecipeBtn" title="Random Recipe">
+                        <i class="fas fa-random"></i>
+                    </button>
+                    <button class="theme-toggle" id="themeToggle">
+                        <i class="fas fa-moon"></i>
+                    </button>
+                </div>
+            </div>
         </nav>
     </header>
     <main>
@@ -36,6 +111,151 @@
                     <i class="fas fa-times"></i>
                 </button>
                 <div class="recipe-details-content"></div>
+            </div>
+
+            <!-- Favorites Modal -->
+            <div class="favorites-modal" id="favoritesModal">
+                <div class="favorites-modal-content">
+                    <div class="favorites-header">
+                        <h2><i class="fas fa-heart"></i> My Favorite Recipes</h2>
+                        <button class="favorites-close-btn" id="favoritesCloseBtn">
+                            <i class="fas fa-times"></i>
+                        </button>
+                    </div>
+                    <div class="favorites-container" id="favoritesContainer">
+                        <!-- Favorite recipes will be displayed here -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Cooking Timer Modal -->
+            <div class="timer-modal" id="timerModal">
+                <div class="timer-modal-content">
+                    <div class="timer-header">
+                        <h2><i class="fas fa-clock"></i> Cooking Assistant</h2>
+                        <button class="timer-close-btn" id="timerCloseBtn">
+                            <i class="fas fa-times"></i>
+                        </button>
+                    </div>
+                    <div class="timer-container" id="timerContainer">
+                        <div class="active-timers" id="activeTimers">
+                            <!-- Active timers will be displayed here -->
+                        </div>
+                        <div class="timer-controls">
+                            <div class="timer-input-group">
+                                <input type="number" id="timerMinutes" placeholder="Minutes" min="0" max="999" value="5">
+                                <input type="number" id="timerSeconds" placeholder="Seconds" min="0" max="59" value="0">
+                                <input type="text" id="timerLabel" placeholder="Timer label (e.g., 'Boil pasta')" maxlength="50">
+                                <button class="add-timer-btn" id="addTimerBtn">
+                                    <i class="fas fa-plus"></i> Add Timer
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Shopping List Modal -->
+            <div class="shopping-modal" id="shoppingModal">
+                <div class="shopping-modal-content">
+                    <div class="shopping-header">
+                        <h2><i class="fas fa-shopping-cart"></i> Shopping List</h2>
+                        <div class="shopping-header-actions">
+                            <button class="clear-shopping-btn" id="clearShoppingBtn" title="Clear All">
+                                <i class="fas fa-trash"></i>
+                            </button>
+                            <button class="print-shopping-btn" id="printShoppingBtn" title="Print List">
+                                <i class="fas fa-print"></i>
+                            </button>
+                            <button class="shopping-close-btn" id="shoppingCloseBtn">
+                                <i class="fas fa-times"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="shopping-container" id="shoppingContainer">
+                        <!-- Shopping list items will be displayed here -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Collections Modal -->
+            <div class="collections-modal" id="collectionsModal">
+                <div class="collections-modal-content">
+                    <div class="collections-header">
+                        <h2><i class="fas fa-folder"></i> Recipe Collections</h2>
+                        <div class="collections-header-actions">
+                            <button class="new-collection-btn" id="newCollectionBtn" title="New Collection">
+                                <i class="fas fa-plus"></i>
+                            </button>
+                            <button class="collections-close-btn" id="collectionsCloseBtn">
+                                <i class="fas fa-times"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="collections-container" id="collectionsContainer">
+                        <!-- Collections will be displayed here -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Accessibility Modal -->
+            <div class="accessibility-modal" id="accessibilityModal">
+                <div class="accessibility-modal-content">
+                    <div class="accessibility-header">
+                        <h2><i class="fas fa-universal-access"></i> Accessibility Options</h2>
+                        <button class="accessibility-close-btn" id="accessibilityCloseBtn">
+                            <i class="fas fa-times"></i>
+                        </button>
+                    </div>
+                    <div class="accessibility-container">
+                        <div class="accessibility-section">
+                            <h3>Font Size</h3>
+                            <div class="font-size-controls">
+                                <button class="font-btn" onclick="changeFontSize('small')">A</button>
+                                <button class="font-btn" onclick="changeFontSize('medium')">A</button>
+                                <button class="font-btn large" onclick="changeFontSize('large')">A</button>
+                            </div>
+                        </div>
+
+                        <div class="accessibility-section">
+                            <h3>Contrast</h3>
+                            <div class="contrast-controls">
+                                <button class="contrast-btn" onclick="toggleHighContrast()">
+                                    <i class="fas fa-adjust"></i>
+                                    High Contrast
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="accessibility-section">
+                            <h3>Reading</h3>
+                            <div class="reading-controls">
+                                <button class="reading-btn" onclick="toggleTextToSpeech()">
+                                    <i class="fas fa-volume-up"></i>
+                                    Text to Speech
+                                </button>
+                                <button class="reading-btn" onclick="toggleReadingMode()">
+                                    <i class="fas fa-book-open"></i>
+                                    Reading Mode
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="accessibility-section">
+                            <h3>Navigation</h3>
+                            <div class="navigation-controls">
+                                <button class="nav-btn" onclick="toggleKeyboardNavigation()">
+                                    <i class="fas fa-keyboard"></i>
+                                    Keyboard Navigation
+                                </button>
+                                <button class="nav-btn" onclick="showKeyboardShortcuts()">
+                                    <i class="fas fa-question-circle"></i>
+                                    Keyboard Shortcuts
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </section>
     </main>
